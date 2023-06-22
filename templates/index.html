@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}store{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>The adventure venture </h1>
+  <div class="row">
+  {% for product in products %}
+    {% if forloop.counter0|divisibleby:3 %}
+      </div> <div class="row mb-5">
+    {% endif %}
+    <div class="col-4">
+      {% include "product.html" %}
+    </div>
+  {% endfor %}
+  </div>
+{#  {% include "add_product.html" %}#}
+</div>
+
+{% endblock %}
