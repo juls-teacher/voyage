@@ -17,7 +17,7 @@ class ProductAdmin(admin.ModelAdmin):
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ("user", "name", "email",)
     fields = ["user", "name", "email",]
-    readonly_fields = ("email",)
+    readonly_fields = ()
     search_fields = ("user", "name",)
 
 
