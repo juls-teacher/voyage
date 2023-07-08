@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from products.views import product, cart, check, index, updateItem ,processOrder, about
+from products.views import product, cart, check, index, updateItem , processOrder, about, register, login_view, logout_view
 from django.conf import settings
 
 urlpatterns = [
@@ -27,11 +27,12 @@ urlpatterns = [
     path('update_item/', updateItem, name='update_item'),
     path('process_order/', processOrder,name = 'process_order'),
     path('about/', about,name = 'about'),
+    path("register/", register, name="register"),
+    path("login/", login_view, name = "login"),
+    path("logout/", logout_view, name = "logout"),
+
 
 ]
-
-
-
 
 if settings.DEBUG:
     from django.conf.urls.static import static
