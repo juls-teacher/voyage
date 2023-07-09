@@ -39,7 +39,7 @@ class OrderItemAdmin(admin.ModelAdmin):
 
 @admin.register(Address)
 class AddressAdmin(admin.ModelAdmin):
-    list_display = ("customer", "order", "address", "city", "state", "zipcode", "date_added",)
-    fields = ["customer", "order", "address", "city", "state", "zipcode", "date_added", ]
+    list_display = ("customer", "order", "address", "city", "state", "zipcode", "date_added","phone_number",)
+    fields = ["customer", "order", "address", "city", "state", "zipcode", "date_added", "phone_number",]
     readonly_fields = ("date_added",)
-    search_fields = ("city",)
+    search_fields = ("phone_number",)
