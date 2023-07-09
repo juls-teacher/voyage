@@ -16,7 +16,7 @@
 
                     <div id="shipping-info">
                         <hr>
-                        <p>Shipping Information:</p>
+                        <p>Информация о доставке:</p>
                         <hr>
                         <div class="form-field">
                             <input class="form-control" type="text" name="address" placeholder="адрес..">
@@ -30,9 +30,9 @@
                         <div class="form-field">
                             <input class="form-control" type="text" name="zipcode" placeholder="индекс..">
                         </div>
-{#                        <div class="form-field">#}
-{#                            <input class="form-control" type="text" name="country" placeholder="Country..">#}
-{#                        </div>#}
+                        <div class="form-field">
+                            <input class="form-control" type="text" name="phone_number" placeholder="телефон в формате 375 ">
+                        </div>
                     </div>
 
                     <hr>
@@ -111,6 +111,7 @@
         'city':null,
         'state':null,
         'zipcode':null,
+        'phone_number':null,
       }
 
       if (shipping != 'False'){
@@ -118,6 +119,7 @@
           shippingInfo.city = form.city.value
           shippingInfo.state = form.state.value
           shippingInfo.zipcode = form.zipcode.value
+          shippingInfo.phone_number = form.phone_number.value
         }
 
         if (user == 'AnonymousUser'){
