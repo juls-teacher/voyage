@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 
 class Product(models.Model):
-
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to="products/", blank=True, null=True)
     price = models.DecimalField(default=Decimal("0"), decimal_places=5, max_digits=10)
@@ -14,7 +13,7 @@ class Product(models.Model):
         return f"Product : {self.title} - {self.price}"
 
 class Customer(models.Model):
-    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=250, null= True)
     email = models.CharField(max_length=200)
 
@@ -29,7 +28,7 @@ class Order(models.Model):
     transaction_id = models.CharField(max_length=100, null=True)
 
 
-    def str(self):
+    def __str__(self):
         return str(self.id)
 
     @property
@@ -69,8 +68,13 @@ class Address(models.Model):
     state = models.CharField(max_length=200, null=False)
     zipcode = models.CharField(max_length=200, null=False)
     date_added = models.DateTimeField(auto_now_add=True)
+    phone_number = models.CharField(max_length=12, default="")
 
-    def str(self):
-        return self.address
+
+    def __str__(self):
+        if self.address:
+            return str(self.address)
+        else:
+            return "No address specified"
 
 
