@@ -106,47 +106,52 @@
         'total':total,
       }
 
-      var shippingInfo = {
-        'address':null,
-        'city':null,
-        'state':null,
-        'zipcode':null,
-        'phone_number':null,
-      }
+          var shippingInfo = {
+              'address': null,
+              'city': null,
+              'state': null,
+              'zipcode': null,
+              'phone_number': null,
+          }
 
-      if (shipping != 'False'){
-          shippingInfo.address = form.address.value
-          shippingInfo.city = form.city.value
-          shippingInfo.state = form.state.value
-          shippingInfo.zipcode = form.zipcode.value
-          shippingInfo.phone_number = form.phone_number.value
-        }
+          if (shipping != 'False') {
+              if (form.address.value == "" || form.city.value == "" || form.state.value == "" || form.zipcode.value == "" || form.phone_number.value == "") {
+                  alert("Пожалуйста, заполните все поля формы адреса.");
+                  return false;
+              } else {
+                  shippingInfo.address = form.address.value;
+                  shippingInfo.city = form.city.value;
+                  shippingInfo.state = form.state.value;
+                  shippingInfo.zipcode = form.zipcode.value;
+                  shippingInfo.phone_number = form.phone_number.value;
+              }
+          }
 
-        if (user == 'AnonymousUser'){
-          userFormData.name = form.name.value
-          userFormData.email = form.email.value
-        }
+          if (user == 'AnonymousUser') {
+              userFormData.name = form.name.value
+              userFormData.email = form.email.value
+          }
 
-        console.log('Shipping Info:', shippingInfo)
-        console.log('User Info:', userFormData)
+          console.log('Shipping Info:', shippingInfo)
+          console.log('User Info:', userFormData)
 
-        var url = "/process_order/"
-        fetch(url, {
-          method:'POST',
-          headers:{
-            'Content-Type':'applicaiton/json',
-            'X-CSRFToken':csrftoken,
-          },
-          body:JSON.stringify({'form':userFormData, 'shipping':shippingInfo}),
+          var url = "/process_order/"
+          fetch(url, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'applicaiton/json',
+                  'X-CSRFToken': csrftoken,
+              },
+              body: JSON.stringify({'form': userFormData, 'shipping': shippingInfo}),
 
-        })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log('Success:', data);
-          alert('Transaction completed');
-          window.location.href = "{% url 'product' %}"
+          })
+              .then((response) => response.json())
+              .then((data) => {
+                  console.log('Success:', data);
+                  alert('Transaction completed');
+                  window.location.href = "{% url 'product' %}"
 
-        })
+              })
       }
   </script>
 {% endblock content %}
